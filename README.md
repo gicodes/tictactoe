@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-# tictactoe
+### tictactoe
 TicTacToe is a traditional peer-to-peer game. 
 It was built on Next 13 (Next.js) for the client side. 
 It was built on Express (+ Node.js) for the server side.
