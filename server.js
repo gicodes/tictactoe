@@ -11,24 +11,24 @@ const port = process.env.PORT || 3001;
 const app = express();
 
 // instantiating app with cors
-// app.use(cors({
-//   credentials: true,
-//   methods: ['GET', 'POST',],
-//   origin: 'http://localhost:3003',
-//   "Access-Control-Allow-Origin": 'http://localhost:3003' || '*',
-//   allowedHeaders: ['my-custom-header', 'Access-Control-Allow-Origin']
-// }))
+app.use(cors({
+  credentials: true,
+  methods: ['GET', 'POST',],
+  origin: 'http://localhost:3003',
+  "Access-Control-Allow-Origin": 'http://localhost:3003' || '*',
+  allowedHeaders: ['my-custom-header', 'Access-Control-Allow-Origin']
+}))
 
 // instantiating app with http server
 const server = http.createServer(app);
 
 // instantiating server socket using server instance
 const io = socketIO(server, {
-  // cors: {
-  //   origin: '*',
-  //   methods: ['GET', 'POST'],
-  //   "Access-Control-Allow-Origin": '*'
-  // }
+  cors: {
+    origin: '*',
+    methods: ['GET', 'POST'],
+    "Access-Control-Allow-Origin": '*'
+  }
 });
 
 // initialize server listening on port
