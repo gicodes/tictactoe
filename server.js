@@ -2,6 +2,7 @@
 const socketIO = require('socket.io');
 const express = require('express');
 const http = require('http');
+const cors = require('cors');
 
 // initialize localhost port
 const port = process.env.PORT || 3001;
@@ -9,11 +10,26 @@ const port = process.env.PORT || 3001;
 // instantiating app with express
 const app = express();
 
+// instantiating app with cors
+// app.use(cors({
+//   credentials: true,
+//   methods: ['GET', 'POST',],
+//   origin: 'http://localhost:3003',
+//   "Access-Control-Allow-Origin": 'http://localhost:3003' || '*',
+//   allowedHeaders: ['my-custom-header', 'Access-Control-Allow-Origin']
+// }))
+
 // instantiating app with http server
 const server = http.createServer(app);
 
-// creating server socket using server instance
-const io = socketIO(server);
+// instantiating server socket using server instance
+const io = socketIO(server, {
+  // cors: {
+  //   origin: '*',
+  //   methods: ['GET', 'POST'],
+  //   "Access-Control-Allow-Origin": '*'
+  // }
+});
 
 // initialize server listening on port
 server.listen(port, () => {
@@ -140,3 +156,10 @@ const taunts = [
   'thanks for wasting my time',
   'can i play with someone else',
 ];
+
+// https://pawelgrzybek.com/til-node-v18-11-0-comes-with-a-watch-mode-so-you-might-not-need-nodemon/
+app.get('/test', (req, res) => {
+  // console.log('referrer :>', req.headers.referer)
+  // console.log('req>', req.headers)
+  res.send('Hello World!')
+});

@@ -11,23 +11,23 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // React App component class, is exported to index.js
 const App = () => {
+  const endpoint = "http://localhost:3003/"
+  const socket = socketIOClient(endpoint);
+
   const [state, setState] = useState({
     boardState: ['', '', '', '', '', '', '', '', ''],
     sockets: {},
     room: '',
-    mySocketId: '',
+    mySocketId: socket.id,
     playerSign: '',
     currentTurn: 'X',
     status: 'unstarted',
   });
 
-  const endpoint = "http://127.0.0.1:3000/playNow";
-  const socket = socketIOClient(endpoint);
+  console.log('rendering')
+  console.count('rendering')
 
   useEffect(() => {
-    // Update client's socketId in React state upon establishing websocket session.
-    setState((prevState) => ({ ...prevState, mySocketId: socket.id }));
-
     socket.on('connect', () => {
       console.log('Connected to the server');
       // When a client (any client) connects to the current room, update the room number
@@ -95,7 +95,7 @@ const App = () => {
         incomingTauntToast(message, 3);
       });
     });
-  });
+  }, []);
 
   return (
     <Play />
