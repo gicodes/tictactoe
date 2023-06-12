@@ -1,45 +1,5 @@
-/* importing express and major dependencies */
-const { Server } = require('socket.io');
-const express = require('express');
-const cors = require('cors');
-const http = require('http');
 
-/* instantiating app with express */
-const app = express();
-const port = process.env.PORT || 3001;
-
-/* instantiating app with http */
-const server = http.createServer(app);
-const io = new Server;
-
-/* initialize server listening on port */
-server.listen(port, () => {
-  console.log(`server listening on ${port}`);
-});
-
-/* instantiating app with cors */
-app.use(cors({
-  credentials: true,
-  methods: ['GET', 'POST',],
-  origin: 'http://localhost:3003/',
-  "Access-Control-Allow-Origin": 'http://localhost:3003/playNow' || '*',
-  allowedHeaders: ['my-custom-header', 'Access-Control-Allow-Origin']
-}))
-
-/* instantiating socket using server instance */
-const socket = new Server(server, {
-  cors: {
-    origin: '*',
-    methods: ['GET', 'POST'],
-    "Access-Control-Allow-Origin": '*'
-  }
-});
-
-/* https://pawelgrzybek.com/til-node-v18-11-0-comes-with-a-watch-mode-so-you-might-not-need-nodemon/ */
-app.get('/', (req, res) => {
-  /* console.log('req>', req.headers) */
-  res.send('Hello World!',)
-});
+const io = socketIO(server);
 
 /* initial socket room number */
 let roomNum = 1;

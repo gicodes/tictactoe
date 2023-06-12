@@ -2,8 +2,8 @@
 
 // library imports
 import Play from './play';
+import { io } from 'socket.io-client';
 import { useState, useEffect } from 'react';
-import socketIOClient from 'socket.io-client';
 
 // stylesheet imports
 import './app.css';
@@ -11,14 +11,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // React App component class, is exported to index.js
 const App = () => {
-  const endpoint = "http://localhost:3003/"
-  const socket = socketIOClient(endpoint);
+  const endpoint = "http://localhost:3001/"
 
   const [state, setState] = useState({
     boardState: ['', '', '', '', '', '', '', '', ''],
     sockets: {},
     room: '',
-    mySocketId: socket.id,
     playerSign: '',
     currentTurn: 'X',
     status: 'unstarted',
@@ -28,6 +26,7 @@ const App = () => {
   console.count('rendering')
 
   useEffect(() => {
+    const socket = io(endpoint);
     socket.on('connect', () => {
       console.log('Connected to the server');
       // When a client (any client) connects to the current room, update the room number
@@ -36,6 +35,7 @@ const App = () => {
         setState((prevState) => ({
           ...prevState,
           room: roomNo,
+          mySocketId: socket.id,
           sockets: sockets,
         }));
       });
@@ -95,6 +95,11 @@ const App = () => {
         incomingTauntToast(message, 3);
       });
     });
+
+    /* Clean up the socket connection when the component is unmounted */
+    return () => {
+      socket.disconnect();
+    };
   }, []);
 
   return (

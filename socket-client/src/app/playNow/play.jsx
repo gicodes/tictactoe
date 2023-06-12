@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { io } from 'socket.io-client';
 import { toast, ToastContainer } from 'react-toastify';
 import { Container, Button, ButtonGroup, Alert, Badge } from 'reactstrap';
 
@@ -7,11 +8,13 @@ const Play = () => {
     boardState: ['', '', '', '', '', '', '', '', ''],
     sockets: {},
     room: '',
-    mySocketId: '',
     playerSign: '',
     currentTurn: 'X',
     status: 'unstarted',
   });
+
+  const endpoint = "http://localhost:3001/"
+  const socket = io(endpoint);
 
   // Return a suitable status message depending on the game's state
   const getStatusMessage = () => {
