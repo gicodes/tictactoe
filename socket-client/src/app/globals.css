@@ -115,65 +115,6 @@ body {
   box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.2);
 }
 
-.repos-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem 0;
-}
-
-.repo-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.repo-list li {
-  margin: 2rem 0;
-}
-
-.repo-list a {
-  display: block;
-  background-color: #fff;
-  color: #333;
-  padding: 1rem;
-  border-radius: 4px;
-  text-decoration: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease-in-out;
-}
-
-.repo-list a:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-}
-
-.repo-list h3 {
-  margin: 0;
-  font-size: 1.5rem;
-}
-
-.repo-list p {
-  margin: 0;
-  color: #666;
-  font-size: 1.2rem;
-}
-
-.repo-details {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-  color: #999;
-}
-
-.repo-details span {
-  display: flex;
-  align-items: center;
-}
-
-.repo-details svg {
-  margin-right: 0.5rem;
-}
-
 .loader {
   display: flex;
   justify-content: center;
