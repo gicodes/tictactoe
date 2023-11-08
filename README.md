@@ -17,10 +17,10 @@ A simple browser-based tic-tac-toe game that depends on a locally-run nodejs ser
 `npm run dev` - initiate the npm script that runs both the server and client instances.
 
 
-### `npm run first` - install npm script packages for both server and client. This will install all packages needed on both server and client side. After this process is finished, we can run both the server and client instances with one single command: 
+**`npm run first` - install npm script packages for both server and client. This will install all packages needed on both server and client side. After this process is finished, we can run both the server and client instances with one single command: 
 
 `npm run dev` - npm script that runs both instances.
-### However, it is not available on this project at the moment.
+However, it is not available on this project at the moment.**
 
 
 Now, the server will listen to the specified port (3003) and webpack will compile and host the client code,
