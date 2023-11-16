@@ -21,7 +21,7 @@ module.exports = (io, roomNum, getRandomTaunt) => {
         io.sockets.in(currentRoomId).emit('startGame');
         }
     
-        // when a player disconnects from the game, notifies remaining player in the room
+        // when a player disconnects from the game, notify remaining player in the room
         socket.on('disconnect', () => {
         console.log(`${socket.id} has disconnected from ${currentRoomId}`);
         socket.broadcast.in(currentRoomId).emit('userLeft', socket.id);
